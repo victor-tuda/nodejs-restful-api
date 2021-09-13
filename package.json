@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/victor-tuda/nodejs-restful-api/issues"
   },
-  "homepage": "https://github.com/victor-tuda/nodejs-restful-api#readme"
+  "homepage": "https://github.com/victor-tuda/nodejs-restful-api#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
