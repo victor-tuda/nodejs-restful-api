@@ -8,8 +8,14 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
+    const order = {
+        id: req.body.id,
+        category: req.body.category
+    }
     res.status(201).json({
-        message: "Pedido Solicitado"
+        message: "Pedido Solicitado",
+        orderId: order.id,
+        orderCategory: order.category
     });
 })
 
