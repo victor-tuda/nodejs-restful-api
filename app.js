@@ -30,7 +30,6 @@ const orderRoutes = require('./api/routes/orders');
 // Conexão com Mongoose
 mongoose.connect(`mongodb+srv://admin:${process.env.MONGO_ATLAS_PW}@applantae.81hav.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`);
 
-
 // Utilizando as rotas
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
