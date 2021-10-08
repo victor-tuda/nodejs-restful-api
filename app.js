@@ -1,11 +1,17 @@
+// Importando bibliotecas
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
 
+// Inicializando morgan
 app.use(morgan('dev'));
+
+// Configurações Express
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
+
+// Configurando CORS
 app.use((req, res, next) => {
     res.header('Access-Control-Alow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
