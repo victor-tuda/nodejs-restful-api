@@ -24,15 +24,16 @@ app.use((req, res, next) => {
 })
 
 // Importando as rotas
-const productRoutes = require('./api/routes/products');
-const orderRoutes = require('./api/routes/orders');
+const plantasRoutes = require('./api/routes/plantas');
+const adubosRoutes = require('./api/routes/adubos');
 
 // Conexão com Mongoose
 mongoose.connect(`mongodb+srv://admin:${process.env.MONGO_ATLAS_PW}@applantae.81hav.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`);
 
 // Utilizando as rotas
-app.use('/products', productRoutes);
-app.use('/orders', orderRoutes);
+app.use('/plantas', plantasRoutes);
+app.use('/adubos', adubosRoutes);
+
 
 app.use((req, res, next) => {
     const error = new Error('Not found');

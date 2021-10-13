@@ -3,12 +3,12 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose')
 
-// Importando o modelo de produto
-const Product = require('../models/product');
+// Importando o modelo de planta
+const Planta = require('../models/planta');
 
 
 router.get('/', (req, res, next) => {
-    Product.find()
+    Planta.find()
     .exec()
     .then(docs => {
         console.log(docs);
@@ -30,25 +30,34 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-    const product = new Product({
+    const planta = new Planta({
         _id: new mongoose.Types.ObjectId(),
-        name: req.body.name,
-        price: req.body.price
+        apelido: req.body.apelido,
+        especie: req.body.especie,
+        imagem: req.body.imagem,
+        tipoSolo: req.body.tipoSolo,
+        regaFrequencia: req.body.regaFrequencia,
+        adubagemFrequencia: req.body.adubagemFrequencia,
+        incidenciaSolar: req.body.incidenciaSolar
     })
-    product
+    planta
     .save()
-    .then(result => {console.log(result)})
-    .catch(err => console.log(err));
-
-    res.status(201).json({
-        message: 'Recebendo POST requests em /products',
-        createdProduct: product
+    .then(result => {
+        console.log(result);
+        res.status(201).json({
+            message: "Planta criada com sucesso",
+            Planta 
+        })
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({error:err});
     });
 });
 
-router.get('/:productId', (req, res, next) => {
-    const id = req.params.productId;
-    Product.findById(id)
+router.get('/:PlantaId', (req, res, next) => {
+    const id = req.params.PlantaId;
+    Planta.findById(id)
     .exec()
     .then(doc => {
         console.log(doc)
@@ -60,14 +69,14 @@ router.get('/:productId', (req, res, next) => {
     })
 });
 
-router.patch('/:productId', (req, res, next) => {
-    const id = req.params.productId;
+router.patch('/:PlantaId', (req, res, next) => {
+    const id = req.params.PlantaId;
     const updateOps = {};
     for (const ops of req.body) {
         updateOps[ops.propName] = ops.value
     }
 
-    Product.updateOne({_id: id},{$set: updateOps})
+    Planta.updateOne({_id: id},{$set: updateOps})
     .exec()
     .then(result => {
         console.log(result);
@@ -81,9 +90,9 @@ router.patch('/:productId', (req, res, next) => {
     })
 });
 
-router.delete('/:productId', (req, res, next) => {
-    const id = req.params.productId;
-    Product.remove({_id: id})
+router.delete('/:PlantaId', (req, res, next) => {
+    const id = req.params.PlantaId;
+    Planta.remove({_id: id})
     .then(result => {
         res.status(200).json(result)
     })
