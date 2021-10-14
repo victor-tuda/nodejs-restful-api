@@ -31,12 +31,11 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
     const adubo = new Adubo({
         _id: new mongoose.Types.ObjectId(),
-        id: Number,
-        nomeMarca: String,
-        tipo: String,
-        modoAplicacao: String,
-        estrutura: String
-    })
+        nomeMarca: req.body.nomeMarca,
+        tipo: req.body.tipo,
+        modoAplicacao: req.body.modoAplicacao,
+        estrutura: req.body.estrutura
+    });
     adubo
     .save()
     .then(result => {

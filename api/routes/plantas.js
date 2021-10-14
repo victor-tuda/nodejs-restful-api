@@ -39,7 +39,7 @@ router.post('/', (req, res, next) => {
         regaFrequencia: req.body.regaFrequencia,
         adubagemFrequencia: req.body.adubagemFrequencia,
         incidenciaSolar: req.body.incidenciaSolar
-    })
+    });
     planta
     .save()
     .then(result => {
