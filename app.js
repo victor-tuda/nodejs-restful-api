@@ -26,6 +26,7 @@ app.use((req, res, next) => {
 // Importando as rotas
 const plantasRoutes = require('./api/routes/plantas');
 const adubosRoutes = require('./api/routes/adubos');
+const userRoutes = require('./api/routes/user');
 
 // Conexão com Mongoose
 mongoose.connect(`mongodb+srv://admin:${process.env.MONGO_ATLAS_PW}@applantae.81hav.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`);
@@ -33,6 +34,7 @@ mongoose.connect(`mongodb+srv://admin:${process.env.MONGO_ATLAS_PW}@applantae.81
 // Utilizando as rotas
 app.use('/plantas', plantasRoutes);
 app.use('/adubos', adubosRoutes);
+app.use('/usuarios', userRoutes);
 
 
 app.use((req, res, next) => {
