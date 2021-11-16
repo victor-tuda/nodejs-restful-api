@@ -26,7 +26,7 @@ app.use((req, res, next) => {
 // Importando as rotas
 const plantasRoutes = require('./api/routes/plantas');
 const adubosRoutes = require('./api/routes/adubos');
-const userRoutes = require('./api/routes/user');
+const userRoutes = require('./api/routes/users');
 
 // Conexão com Mongoose
 mongoose.connect(`mongodb+srv://admin:${process.env.MONGO_ATLAS_PW}@applantae.81hav.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`);

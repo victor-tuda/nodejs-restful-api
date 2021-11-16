@@ -1,7 +1,5 @@
 const mongoose = require("mongoose")
 
-const checkAuth = require("../middleware/check-auth");
-
 const Planta = require("../models/planta");
 const Adubo = require("../models/adubo");
 
