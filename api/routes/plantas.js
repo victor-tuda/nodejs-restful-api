@@ -1,7 +1,8 @@
 // Importando bibliotecas
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const checkAuth = require('../middleware/check-auth');
 
 // Importando o modelo de planta
 const Planta = require('../models/planta');
@@ -29,7 +30,7 @@ router.get('/', (req, res, next) => {
     })
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', checkAuth, (req, res, next) => {
     const planta = new Planta({
         _id: new mongoose.Types.ObjectId(),
         apelido: req.body.apelido,
