@@ -42,11 +42,41 @@ router.post('/cadastro', (req, res, next) =>{
                             error: err
                         })
                     })
-                }
+                }   
             })
         }
     })
 });
+
+router.post('/login', (req, res, next) => {
+    User.find({email: req.body.email})
+    .exec()
+    .then(user => {
+        if (user.length < 1){
+            res.status(401).json({
+                message: 'Autenticação falhou'
+            })
+        }
+        bcrypt.compare(req.body.password, user[0].password, (err, result) => {
+            if (err){
+                res.status(401).json({
+                    message: 'Autenticação falhou'
+                })
+            }
+            if (result){
+                return res.status(200).json({
+                    message: 'Autenticação autorizada'
+                })
+            }
+        })
+    })
+    .catch(err => {
+        res.status(500).json({
+            error: err
+        })
+    })
+
+})
 
 router.delete('/:userId', (req, res, next) => {
     User.remove({_id: req.params.userId})
