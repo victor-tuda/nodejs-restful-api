@@ -9,17 +9,13 @@ const checkAuth = require('../middleware/check-auth');
 const Adubo = require('../models/adubo');
 const Planta = require('../models/planta');
 
-// Importando os controllers
+// Importando o controller adubos
 const AdubosController = require('../controllers/adubos');
 
 router.get('/', checkAuth, AdubosController.adubos_get_all);
-
-router.post('/', checkAuth, AdubosController.adubos_cadastro);
-
 router.get('/:AduboId', checkAuth, AdubosController.adubos_get_by_id);
-
+router.post('/', checkAuth, AdubosController.adubos_cadastro);
 router.patch('/:AduboId', checkAuth, AdubosController.adubos_patch_by_id);
-
 router.delete('/:AduboId', checkAuth, AdubosController.adubos_delete_by_id);
 
 module.exports = router;
