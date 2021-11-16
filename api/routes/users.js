@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const checkAuth = require('../middleware/check-auth');
 
 // Importando o modelo de user
-const User = require('../models/user');
+const User = require('../models/users');
 
 // Importando o controller users
 const UsersController = require('../controllers/users');
