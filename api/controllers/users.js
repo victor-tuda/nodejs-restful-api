@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const User = require('../models/user');
 
 exports.users_cadastro = (req, res, next) =>{
+    console.log('teste')
     User.find({email: req.body.email})
     .exec()
     .then(user => {

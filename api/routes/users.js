@@ -12,7 +12,6 @@ const User = require('../models/user');
 // Importando o controller users
 const UsersController = require('../controllers/users');
 
-
 router.post('/cadastro', UsersController.users_cadastro);
 router.post('/login', UsersController.users_login);
 router.delete('/:userId', checkAuth, UsersController.users_delete_by_id);
