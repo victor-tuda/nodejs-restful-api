@@ -7,6 +7,7 @@ const checkAuth = require('../middleware/check-auth');
 // Importando o modelo de planta
 const Planta = require('../models/planta');
 
+const PlantasController = require('../controllers/plantas');
 
 router.get('/', (req, res, next) => {
     Planta.find()
@@ -30,31 +31,7 @@ router.get('/', (req, res, next) => {
     })
 });
 
-router.post('/', checkAuth, (req, res, next) => {
-    const planta = new Planta({
-        _id: new mongoose.Types.ObjectId(),
-        apelido: req.body.apelido,
-        especie: req.body.especie,
-        imagem: req.body.imagem,
-        tipoSolo: req.body.tipoSolo,
-        regaFrequencia: req.body.regaFrequencia,
-        adubagemFrequencia: req.body.adubagemFrequencia,
-        incidenciaSolar: req.body.incidenciaSolar
-    });
-    planta
-    .save()
-    .then(result => {
-        console.log(result);
-        res.status(201).json({
-            message: "Planta criada com sucesso",
-            Planta 
-        })
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json({error:err});
-    });
-});
+router.post('/', checkAuth, PlantasController.plantas_cadastro);
 
 router.get('/:PlantaId', (req, res, next) => {
     const id = req.params.PlantaId;
