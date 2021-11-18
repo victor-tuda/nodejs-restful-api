@@ -1,7 +1,9 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const jwt = require('jsonwebtoken');
 
 const Planta = require("../models/planta");
 const Adubo = require("../models/adubo");
+
 
 exports.plantas_get_by_id = (req, res, next) => {
     const id = req.params.PlantaId;
@@ -40,8 +42,14 @@ exports.plantas_get_all = (req, res, next) => {
 };
 
 exports.plantas_cadastro = (req, res, next) => {
+    const token = req.headers.authorization.split(" ")[1];
+    const user = jwt.decode(token);
+    console.log(user);
+
     const planta = new Planta({
         _id: new mongoose.Types.ObjectId(),
+        usuarioId: user.userId,
+        usuarioEmail: user.email,
         apelido: req.body.apelido,
         especie: req.body.especie,
         imagem: req.body.imagem,

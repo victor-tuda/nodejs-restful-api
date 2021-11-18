@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const aduboSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
+    usuario: String,
     plantaId: { type: mongoose.Schema.Types.ObjectId, ref: "planta", required: true }, 
     nomeMarca: { type: String, required: true },
     tipo: String,
