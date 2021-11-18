@@ -8,6 +8,7 @@ const Adubo = require("../models/adubo");
 exports.plantas_get_by_id = (req, res, next) => {
     const token = req.headers.authorization.split(" ")[1];
     const user = jwt.decode(token);
+
     const id = req.params.PlantaId;
 
     Planta.find( { _id: id, usuarioEmail: user.email} )
@@ -29,8 +30,7 @@ exports.plantas_get_all = (req, res, next) => {
     Planta.find({ usuarioEmail: user.email})
     .exec()
     .then(docs => {
-        console.log(docs);
-        if (docs.length >= 0){
+        if (docs.length > 0){
             res.status(200).json(docs);
         }else {
             res.status(200).json({
