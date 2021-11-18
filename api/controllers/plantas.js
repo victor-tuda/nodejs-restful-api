@@ -6,8 +6,11 @@ const Adubo = require("../models/adubo");
 
 
 exports.plantas_get_by_id = (req, res, next) => {
+    const token = req.headers.authorization.split(" ")[1];
+    const user = jwt.decode(token);
     const id = req.params.PlantaId;
-    Planta.findById(id)
+
+    Planta.find( { _id: id, usuarioEmail: user.email} )
     .exec()
     .then(doc => {
         console.log(doc)
@@ -20,7 +23,10 @@ exports.plantas_get_by_id = (req, res, next) => {
 };
 
 exports.plantas_get_all = (req, res, next) => {
-    Planta.find()
+    const token = req.headers.authorization.split(" ")[1];
+    const user = jwt.decode(token);
+
+    Planta.find({ usuarioEmail: user.email})
     .exec()
     .then(docs => {
         console.log(docs);
@@ -44,7 +50,6 @@ exports.plantas_get_all = (req, res, next) => {
 exports.plantas_cadastro = (req, res, next) => {
     const token = req.headers.authorization.split(" ")[1];
     const user = jwt.decode(token);
-    console.log(user);
 
     const planta = new Planta({
         _id: new mongoose.Types.ObjectId(),
@@ -74,13 +79,17 @@ exports.plantas_cadastro = (req, res, next) => {
 };
 
 exports.plantas_patch_by_id = (req, res, next) => {
+    const token = req.headers.authorization.split(" ")[1];
+    const user = jwt.decode(token);
+
     const id = req.params.PlantaId;
     const updateOps = {};
-    for (const ops of req.body) {
-        updateOps[ops.propName] = ops.value
+
+    for (const ops in req.body) {
+        updateOps[ops] = req.body[ops]
     }
 
-    Planta.updateOne({_id: id},{$set: updateOps})
+    Planta.updateOne({_id: id, usuarioEmail: user.email},{$set: updateOps})
     .exec()
     .then(result => {
         console.log(result);
@@ -95,8 +104,11 @@ exports.plantas_patch_by_id = (req, res, next) => {
 };
 
 exports.plantas_delete_by_id = (req, res, next) => {
+    const token = req.headers.authorization.split(" ")[1];
+    const user = jwt.decode(token);
+
     const id = req.params.PlantaId;
-    Planta.remove({_id: id})
+    Planta.remove({_id: id, usuarioEmail: user.email})
     .then(result => {
         res.status(200).json(result)
     })
