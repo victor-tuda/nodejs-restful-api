@@ -55,6 +55,7 @@ exports.adubos_cadastro = (req, res, next) => {
         _id: new mongoose.Types.ObjectId(),
         usuarioId: user.userId,
         usuarioEmail: user.email,
+        produto: req.body.produto,
         plantaId: req.body.plantaId,
         nomeMarca: req.body.nomeMarca,
         tipo: req.body.tipo,
