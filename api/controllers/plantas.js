@@ -58,6 +58,7 @@ exports.plantas_cadastro = (req, res, next) => {
         apelido: req.body.apelido,
         especie: req.body.especie,
         imagem: req.body.imagem,
+        adubo: req.body.adubo,
         tipoSolo: req.body.tipoSolo,
         regaFrequencia: req.body.regaFrequencia,
         adubagemFrequencia: req.body.adubagemFrequencia,
@@ -69,7 +70,7 @@ exports.plantas_cadastro = (req, res, next) => {
         console.log(result);
         res.status(201).json({
             message: "Planta criada com sucesso",
-            Planta 
+            planta
         })
     })
     .catch(err => {

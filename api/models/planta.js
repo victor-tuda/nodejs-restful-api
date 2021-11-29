@@ -7,6 +7,7 @@ const plantaSchema = mongoose.Schema({
     apelido: String,
     especie: String,
     imagem: String,
+    adubo: String,
     tipoSolo: String,
     regaFrequencia: String,
     adubagemFrequencia: String,

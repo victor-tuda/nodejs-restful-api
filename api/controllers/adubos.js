@@ -67,7 +67,7 @@ exports.adubos_cadastro = (req, res, next) => {
         console.log(result);
         res.status(201).json({
             message: "Adubo criado com sucesso",
-            Adubo
+            adubo
         })
     })
     .catch(err => {
